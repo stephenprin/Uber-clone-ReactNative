@@ -2,6 +2,11 @@ import { View, Text, Image, FlatList } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import tw from 'twrnc';
+import { Icon } from '@rneui/themed';
+
+
+
+
 
 const data = [
     {
@@ -34,7 +39,10 @@ const NavOptions = () => {
                                 uri: item.image
                       }}
                       />
-                      <Text style={tw`font font-semibold pt-4 text-center text-sky-900`}>{ item.title}</Text>
+                      <Text style={tw`font font-semibold pt-4 text-center text-sky-900`}>{item.title}</Text>
+                      <View style={tw`flex-row justify-center`}>
+                      <Icon style={tw`bg-black rounded-full mt-4 p-2 w-10 `} type="antdesign" color="white" name="arrowright" />
+                      </View>
                   </View>
                 </TouchableOpacity>
             )}
