@@ -3,6 +3,7 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import tw from 'twrnc';
 import { Icon } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -24,6 +25,7 @@ const data = [
 ]
 
 const NavOptions = () => {
+    const navigation = useNavigation();
   return (
       <FlatList
           horizontal
@@ -31,10 +33,12 @@ const NavOptions = () => {
           data={data}
           keyExtractor={(item) => item.id} 
           renderItem={({ item }) => (
-              <TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-300 m-3 w-40`}>
+              <TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-300 m-2 w-40`}
+               onPress={() => navigation.navigate(item.screen) }
+              >
                   <View>
                       <Image
-                          style={{width: 120, height: 120, resizeMode: 'contain'}}
+                          style={{width: 140, height:120, resizeMode: 'contain'}}
                           source={{
                                 uri: item.image
                       }}
