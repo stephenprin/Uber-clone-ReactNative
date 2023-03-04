@@ -4,6 +4,8 @@ import { TouchableOpacity } from 'react-native'
 import tw from 'twrnc';
 import { Icon } from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { selectOrigin } from '../slices/navSlice';
 
 
 
@@ -26,6 +28,7 @@ const data = [
 
 const NavOptions = () => {
     const navigation = useNavigation();
+    const origin= useSelector(selectOrigin)
   return (
       <FlatList
           horizontal
@@ -34,9 +37,10 @@ const NavOptions = () => {
           keyExtractor={(item) => item.id} 
           renderItem={({ item }) => (
               <TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-300 m-2 w-40`}
-               onPress={() => navigation.navigate(item.screen) }
+                  onPress={() => navigation.navigate(item.screen)}
+                  disabled={!origin}
               >
-                  <View>
+                  <View style={tw`${!origin && "opacity-20"}`}>
                       <Image
                           style={{width: 140, height:120, resizeMode: 'contain'}}
                           source={{
