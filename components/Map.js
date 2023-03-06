@@ -12,7 +12,7 @@ const Map = () => {
  
   return (
     <MapView
-      // remove if not using Google Maps
+      
       style={tw`flex-1`}
       mapType="mutedStandard" 
       region={{
