@@ -10,13 +10,13 @@ const data = [
         id: "123",
         icon: "home",
         location: "Home",
-        destination: "Code Street, London, UK"
+        destination: "Code Street, Festac, NG"
     },
     {
         id: "456",
         icon: "briefcase",
         location: "Work",
-        destination: "London Eye, London, UK"
+        destination: "Square Eye, Barnawa, NG"
     }
     
 ]
@@ -26,6 +26,9 @@ const data = [
        <FlatList
            keyExtractor={(item) => item.id}
            data={data}
+           ItemSeparatorComponent={() => (
+                <View style={[tw`bg-gray-200`, { height: 0.6 }]} />
+           ) }
            renderItem={({ item }) => (
                <TouchableOpacity style={tw`flex-row items-center p-5`}>
                    <Icon
@@ -36,6 +39,10 @@ const data = [
                        size={18}
                        
                    />
+                   <View>
+                       <Text style={tw`font-semibold text-lg`}>{item.location}</Text>
+                          <Text style={tw`text-gray-500`}>{item.destination}</Text>
+                   </View>
                </TouchableOpacity>
 
            )}
