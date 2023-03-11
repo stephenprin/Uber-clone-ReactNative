@@ -4,6 +4,8 @@ import tw from "twrnc";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import { Icon } from "@rneui/base";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectTravelTimeInformation } from "../slices/navSlice";
 
 const data = [
   {
@@ -26,9 +28,14 @@ const data = [
   },
 ];
 
+
+
 const RideOptionCard = () => {
   const navigation = useNavigation();
   const [selected, setSelected] = React.useState(null);
+
+ const travelTimeInformation = useSelector(selectTravelTimeInformation)
+
   
 
   return (
@@ -46,7 +53,7 @@ const RideOptionCard = () => {
             type="ionicon"
           />
         </TouchableOpacity>
-        <Text style={tw`text-center py-3 mt-[-1rem] text-[1.2rem]`}>Select Ride</Text>
+        <Text style={tw`text-center py-3 mt-[-1rem] text-[1.2rem]`}>Select Ride -{ travelTimeInformation?.distance?.text}</Text>
       </View>
 
       <FlatList
@@ -65,7 +72,7 @@ const RideOptionCard = () => {
               />
               <View>
                 <Text style={tw`text-xl font-semibold`}>{item.title}</Text>
-                <Text>Travel time ....</Text>
+                <Text>{ travelTimeInformation?.duration.text} travel time</Text>
               </View>
               <Text style={tw`text-xl text-stone-700`}>$10</Text>
             </TouchableOpacity>
