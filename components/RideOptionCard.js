@@ -11,7 +11,7 @@ const data = [
   {
     id: "Uber-X-123",
     title: "Ubery",
-    muttiplier: 1,
+    multiplier: 1,
     image: "https://links.papareact.com/3pn",
   },
   {
@@ -28,7 +28,7 @@ const data = [
   },
 ];
 
-
+const SURGE_PRICE = 1.5 ;
 
 const RideOptionCard = () => {
   const navigation = useNavigation();
@@ -63,7 +63,7 @@ const RideOptionCard = () => {
           return (
             <TouchableOpacity
               onPress={() => setSelected(item)}
-              style={tw`flex-row justify-between items-center px-10  
+              style={tw`flex-row justify-between items-center px-6  
                ${item.id === selected?.id && "bg-gray-200"}`}
             >
               <Image
@@ -74,7 +74,18 @@ const RideOptionCard = () => {
                 <Text style={tw`text-xl font-semibold`}>{item.title}</Text>
                 <Text>{ travelTimeInformation?.duration.text} travel time</Text>
               </View>
-              <Text style={tw`text-xl text-stone-700`}>$10</Text>
+              <Text style={tw`text-[1rem] text-cyan-700`}>
+              
+                {
+                  new Intl.NumberFormat("en-us", {
+                    style: "currency",
+                    currency: "USD",
+                  }).format(
+                    (travelTimeInformation?.duration.value * SURGE_PRICE * item.multiplier)/100
+                  )
+                 }
+              
+              </Text>
             </TouchableOpacity>
 
           

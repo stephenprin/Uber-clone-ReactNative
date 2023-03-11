@@ -35,7 +35,7 @@ const Map = () => {
       units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_KEY}`)
         .then((res) => res.json())
         .then((data) => {
-       
+         console.log(data.rows[0].elements[0])
           dispatch(setTravelTimeInformation(data?.rows[0]?.elements[0]));
         });
     };
